@@ -1,4 +1,5 @@
-const link = "https://japceibal.github.io/emercado-api/cats_products/101.json"
+let categories =  localStorage.getItem('catID')
+const link = "https://japceibal.github.io/emercado-api/cats_products/" + categories + ".json";
 
 document.addEventListener('DOMContentLoaded', async function() {
     const lista = document.querySelector('.product-list-container');

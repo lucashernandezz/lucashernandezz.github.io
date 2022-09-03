@@ -42,6 +42,41 @@
         <div class="text-center col-12">
           <h2 style="font-size:250%; margin-top: 1%;">Productos</h2>
           <p style="font-size:150%;" class="lead">Verás aquí todos los productos de la categoría</p>
+          <div class="container">
+            <div class="row">
+              <div class="col text-end">
+                <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+                  <input type="radio" class="btn-check" name="options" id="sortAsc">
+                  <label class="btn btn-dark border-warning" for="sortAsc">$ ↓</label>
+                  <input type="radio" class="btn-check" name="options" id="sortDesc">
+                  <label class="btn btn-dark border-warning" for="sortDesc">$ ↑</label>
+                  <input type="radio" class="btn-check" name="options" id="sortByCount" checked>
+                  <label class="btn btn-dark border-warning" for="sortByCount"><i class="fas fa-sort-amount-down mr-1"></i></label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+                <div class="row container p-0 m-0">
+                  <div class="col">
+                    <p class="font-weight-normal text-end my-2">Precio:</p>
+                  </div>
+                  <div class="col">
+                    <input class="form-control border-warning" type="number" placeholder="mínimo" id="rangeFilterCountMin">
+                  </div>
+                  <div class="col">
+                    <input class="form-control" type="number" placeholder="máximo" id="rangeFilterCountMax">
+                  </div>
+                  <div class="col-3 p-0">
+                    <div class="btn-group" role="group">
+                      <button class="btn btn-dark btn-block border-warning" id="rangeFilterCount">Filtrar</button>
+                      <button class="btn btn-dark btn-block border-warning" id="clearRangeFilter">Limpiar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="list-group product-list-container">
             </div>
