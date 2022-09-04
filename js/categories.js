@@ -6,7 +6,13 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
+let userMenu = document.getElementById("userMenu")
+let localuser = localStorage.getItem("usuario")
+userMenu.innerHTML += `<a class="nav-link" href="my-profile.html">${localuser}</a>`
+
+
 function sortCategories(criteria, array){
+    
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
     {

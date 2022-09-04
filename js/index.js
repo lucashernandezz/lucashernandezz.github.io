@@ -14,15 +14,5 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 let userMenu = document.getElementById("userMenu")
-
-
-let localuser = localStorage.getItem("user")
-
-function link() {
-    var a = document.createElement('a');
-    var linkText = document.createTextNode(localuser);
-    a.appendChild(linkText);
-    a.href = "my-profile.html";
-    document.body.appendChild(a);
-}
-link()
+let localuser = localStorage.getItem("usuario")
+userMenu.innerHTML += `<a class="nav-link" href="my-profile.html">${localuser}</a>`

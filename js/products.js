@@ -1,6 +1,10 @@
 let categories =  localStorage.getItem('catID')
 const link = "https://japceibal.github.io/emercado-api/cats_products/" + categories + ".json";
 
+let userMenu = document.getElementById("userMenu")
+let localuser = localStorage.getItem("usuario")
+userMenu.innerHTML += `<a class="nav-link" href="my-profile.html">${localuser}</a>`
+
 document.addEventListener('DOMContentLoaded', async function() {
     const lista = document.querySelector('.product-list-container');
 
@@ -35,3 +39,4 @@ function getHTML(producto) {
     </div>
     `;
 }
+
