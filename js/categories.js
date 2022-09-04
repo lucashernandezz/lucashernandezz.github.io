@@ -8,7 +8,7 @@ let maxCount = undefined;
 
 let userMenu = document.getElementById("userMenu")
 let localuser = localStorage.getItem("usuario")
-userMenu.innerHTML += `<a class="nav-link" href="my-profile.html">${localuser}</a>`
+userMenu.innerHTML += `<a class="nav-link" href="my-profile.html">${localuser}</a>`;
 
 
 function sortCategories(criteria, array){
