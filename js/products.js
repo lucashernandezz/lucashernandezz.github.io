@@ -44,6 +44,10 @@ function sortCategories(criteria, array){
     return result;
 }
 
+function setProductID(id) {
+    localStorage.setItem("ProductID", id);
+    window.location = "product-info.html"
+}
 
 function showProductsList(){
 
@@ -55,6 +59,7 @@ function showProductsList(){
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))){
 
             htmlContentToAppend += `
+            <div onclick="setProductID(${product.id})" class="list-group-item list-group-item-action cursor-active">
             <div class="row border border-warning overflow-hidden mb-3 bg-white">
             <div class="col-3 p-0">
               <img class="img-fluid" src="${product.image}" alt="">
@@ -74,6 +79,7 @@ function showProductsList(){
                 </div>
              </div>
             </div>
+            </div>
         </div>
         `;
         }
@@ -81,6 +87,7 @@ function showProductsList(){
         lista.innerHTML = htmlContentToAppend;
     }
 }
+
 
 function sortAndShowCategories(sortCriteria, categoriesArray){
     currentSortCriteria = sortCriteria;
