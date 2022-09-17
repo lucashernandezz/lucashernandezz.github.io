@@ -16,33 +16,21 @@ document.addEventListener("DOMContentLoaded", async function() {
     lista.innerHTML += getHTMLP(listarproducto.data)
 
         listarproducto.data.images.forEach(img => {
-      lista.innerHTML += `<div class="row border border-warning overflow-hidden mb-3 bg-white"><img class="img-fluid" src="${img}" alt="" width="500" height="600"></div>`
+      lista.innerHTML += `<div class="d-flex row border border-warning overflow-hidden mb-3 bg-white"><img class="img-fluid" src="${img}" alt="" width="500" height="600"></div>`
     });
 
     listarcomentario.data.forEach(com => {
       comentarios.innerHTML += getHTMLC(com)
     });
-
-    const starCompleta = `<span class="fa fa-star checked"></span>`;
-    const starVacia = `<span class="fa fa-star"></span>`;
-    let valoracion = listarcomentario.data.score;
-    console.log(valoracion)
-    let completa = Math.floor(valoracion);
-
-    for (let i = 0; i < completa; index++) {
-      comentarios.write += getHTMLC(starCompleta);
-    }
-
-    if (completa < 5) {
-      for (let i = completa; i < 5; index++) {
-        comentarios.write(starVacia)
-        
-      }  
-    }
-
 });
 
-
+function estrellitas(num) {
+  let starAgregar = ""
+  const starCompleta = `<span class="fa fa-star checked"></span>`;
+  const starVacia = `<span class="fa fa-star"></span>`;
+  starAgregar = starCompleta.repeat(num) + starVacia.repeat(5-num)
+  return starAgregar
+};
 
 function getHTMLP(producto) {
     return `
@@ -75,8 +63,8 @@ function getHTMLC(product) {
 </div>
 <div>
 <b><span>Puntuación:</span></b>
-<span>${product.score}</span>
-
+<span>${estrellitas(product.score)}</span>
+${product.score}
 </div>
 </div>
   `;
