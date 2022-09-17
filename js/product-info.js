@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", async function() {
     const comentarios = document.querySelector('.comentario-list-container');
     const listarproducto = await getJSONData(linkProduct);
     const listarcomentario = await getJSONData(linkcomentarios);
-    console.log(listarcomentario)
     lista.innerHTML += getHTMLP(listarproducto.data)
 
         listarproducto.data.images.forEach(img => {
@@ -23,6 +22,24 @@ document.addEventListener("DOMContentLoaded", async function() {
     listarcomentario.data.forEach(com => {
       comentarios.innerHTML += getHTMLC(com)
     });
+
+    const starCompleta = `<span class="fa fa-star checked"></span>`;
+    const starVacia = `<span class="fa fa-star"></span>`;
+    let valoracion = listarcomentario.data.score;
+    console.log(valoracion)
+    let completa = Math.floor(valoracion);
+
+    for (let i = 0; i < completa; index++) {
+      comentarios.write += getHTMLC(starCompleta);
+    }
+
+    if (completa < 5) {
+      for (let i = completa; i < 5; index++) {
+        comentarios.write(starVacia)
+        
+      }  
+    }
+
 });
 
 
@@ -42,7 +59,7 @@ function getHTMLP(producto) {
          <p>${producto.soldCount}</p>
          <b>Imágenes ilustrativas:</b>
     `;
-}
+};
 
 function getHTMLC(product) {
   return `
@@ -59,7 +76,8 @@ function getHTMLC(product) {
 <div>
 <b><span>Puntuación:</span></b>
 <span>${product.score}</span>
+
 </div>
 </div>
   `;
-}
+};
