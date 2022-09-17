@@ -4,39 +4,62 @@ userMenu.innerHTML += `<a class="nav-link" href="my-profile.html">${localuser}</
 
 let products =  localStorage.getItem('ProductID')
 const linkProduct = "https://japceibal.github.io/emercado-api/products/" + products + ".json";
+const linkcomentarios = "https://japceibal.github.io/emercado-api/products_comments/" + products + ".json";
 
 
 
 document.addEventListener("DOMContentLoaded", async function() {
     const lista = document.querySelector('.producto-list-container');
+    const comentarios = document.querySelector('.comentario-list-container');
     const listarproducto = await getJSONData(linkProduct);
-    console.log(listarproducto)
-    lista.innerHTML += getHTML(products)
+    const listarcomentario = await getJSONData(linkcomentarios);
+    console.log(listarcomentario)
+    lista.innerHTML += getHTMLP(listarproducto.data)
 
+        listarproducto.data.images.forEach(img => {
+      lista.innerHTML += `<div class="row border border-warning overflow-hidden mb-3 bg-white"><img class="img-fluid" src="${img}" alt="" width="500" height="600"></div>`
+    });
 
+    listarcomentario.data.forEach(com => {
+      comentarios.innerHTML += getHTMLC(com)
+    });
 });
 
-function getHTML(products) {
+
+
+function getHTMLP(producto) {
     return `
-    <div class="row border border-warning overflow-hidden mb-3 bg-white">
-            <div class="col-3 p-0">
-              <img class="img-fluid" src="${products.image}" alt="">
-            </div>
-            <div style="color:rgb(255, 255, 255); background-color:rgb(31, 31, 31);"  class="col-9 d-flex flex-column justify-content-between">
-               <div class="d-flex justify-content-between">
-                <h3>${products.name}</h3>
-                    <div class="Cantvent">
-                        <p>Vendidos:  <span class="cantven">${products.soldCount}</span></p>
-                    </div>        
-                </div>  
-              <div class="d-flex justify-content-between">
-               <p>${products.description}</p>
-                <div class="Precio">
-                  <span class="moneda">${products.currency}</span>
-                  <span class="Precio">${products.cost}</span>
-                </div>
-             </div>
-            </div>
-         </div>
+         <br>
+         <h2>${producto.name}</h2>
+         <hr>
+         <b>Precio:</b>
+         <p>$${producto.cost}</p>
+         <b>Descripción:</b>
+         <p>${producto.description}</p>
+         <b>Categoría:</b>
+         <p>${producto.category}</p>
+         <b>Cantidad de vendidos:</b>
+         <p>${producto.soldCount}</p>
+         <b>Imágenes ilustrativas:</b>
     `;
+}
+
+function getHTMLC(product) {
+  return `
+  <div class="row border border-warning overflow-hidden mb-3 bg-white">
+  <br>
+  <div>
+  <b><span>${product.user}</span></b>
+  <span> (${product.dateTime}) </span>
+</div>
+<div>
+<b><span>Opinión:</span></b>
+<span>${product.description}</span>
+</div>
+<div>
+<b><span>Puntuación:</span></b>
+<span>${product.score}</span>
+</div>
+</div>
+  `;
 }
