@@ -188,3 +188,11 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+
+.relacionados-list-container {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  max-width: 20cm;
+}

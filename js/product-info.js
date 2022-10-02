@@ -1,6 +1,12 @@
 let userMenu = document.getElementById("userMenu")
 let localuser = localStorage.getItem("usuario")
-userMenu.innerHTML += `<a class="nav-link" href="my-profile.html">${localuser}</a>`;
+userMenu.innerHTML += `${localuser}`
+let cerrarSesion = document.getElementById('cerrarSesion')
+document.addEventListener("DOMContentLoaded", function () {
+    cerrarSesion.addEventListener("click", function() {
+        localStorage.removeItem("usuario");
+    });
+});
 
 let products =  localStorage.getItem('ProductID')
 const linkProduct = "https://japceibal.github.io/emercado-api/products/" + products + ".json";
@@ -11,6 +17,7 @@ const linkcomentarios = "https://japceibal.github.io/emercado-api/products_comme
 document.addEventListener("DOMContentLoaded", async function() {
     const lista = document.querySelector('.producto-list-container');
     const comentarios = document.querySelector('.comentario-list-container');
+    const relacionados = document.querySelector('.relacionados-list-container');
     const listarproducto = await getJSONData(linkProduct);
     const listarcomentario = await getJSONData(linkcomentarios);
     lista.innerHTML += getHTMLP(listarproducto.data)
@@ -21,6 +28,10 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     listarcomentario.data.forEach(com => {
       comentarios.innerHTML += getHTMLC(com)
+    });
+
+    listarproducto.data.relatedProducts.forEach(rel => {
+      relacionados.innerHTML += getHTMLrel(rel)
     });
 });
 
@@ -49,6 +60,34 @@ function getHTMLP(producto) {
     `;
 };
 
+/** Carrusel!!!!
+ 
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+         <div class="carousel-inner">
+           <div class="carousel-item active">
+             <img src="${img}" class="d-block w-100" alt="...">
+           </div>
+           <div class="carousel-item">
+             <img src="${img}" class="d-block w-100" alt="...">
+           </div>
+           <div class="carousel-item">
+             <img src="${img}" class="d-block w-100" alt="...">
+           </div>
+           <div class="carousel-item">
+           <img src="${img}" class="d-block w-100" alt="...">
+         </div>
+         </div>
+         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+           <span class="visually-hidden">Previous</span>
+         </button>
+         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+           <span class="carousel-control-next-icon" aria-hidden="true"></span>
+           <span class="visually-hidden">Next</span>
+         </button>
+       </div>
+ */
+
 function getHTMLC(product) {
   return `
   <div class="row border border-warning overflow-hidden mb-3 bg-white">
@@ -69,3 +108,22 @@ ${product.score}
 </div>
   `;
 };
+
+function getHTMLrel(rel) {
+  return `
+       <br>
+       <div onclick="setRelID(${rel.id})" class="card border-warning cursor-active" width: 18rem;">
+      <img src="${rel.image}" class="card-img-top" alt="...">
+      <div class="card-body">
+      <hr>
+      <h3 style="text-align: center ;">${rel.name}</h3>
+      </div>
+      </div>
+       
+  `;
+};
+
+function setRelID(id) {
+  localStorage.setItem("ProductID", id);
+  window.location = "product-info.html"
+}

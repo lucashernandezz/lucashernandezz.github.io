@@ -15,4 +15,11 @@ document.addEventListener("DOMContentLoaded", function(){
 
 let userMenu = document.getElementById("userMenu")
 let localuser = localStorage.getItem("usuario")
-userMenu.innerHTML += `<a class="nav-link" href="my-profile.html">${localuser}</a>`
+userMenu.innerHTML += `${localuser}`
+
+let cerrarSesion = document.getElementById('cerrarSesion')
+document.addEventListener("DOMContentLoaded", function () {
+    cerrarSesion.addEventListener("click", function() {
+        localStorage.removeItem("usuario");
+    });
+});

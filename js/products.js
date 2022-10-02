@@ -10,9 +10,15 @@ let minCount = undefined;
 let maxCount = undefined;
 const lista = document.querySelector('.product-list-container');
 
-let user = document.getElementById("usuario")
+let userMenu = document.getElementById("userMenu")
 let localuser = localStorage.getItem("usuario")
-user.innerHTML = localuser
+userMenu.innerHTML += `${localuser}`
+let cerrarSesion = document.getElementById('cerrarSesion')
+document.addEventListener("DOMContentLoaded", function () {
+    cerrarSesion.addEventListener("click", function() {
+        localStorage.removeItem("usuario");
+    });
+});
 
 function sortCategories(criteria, array){
     
