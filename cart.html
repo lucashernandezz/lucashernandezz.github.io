@@ -21,7 +21,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link" href="home.html">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="categories.html">Categorías</a>
@@ -29,18 +29,98 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
+          
+            <div class="dropdown">
+              <li class="nav-item" ></li>
+              <a class="btn btn-secondary dropdown-toggle" id="userMenu" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                <li><a class="dropdown-item" id="cerrarSesion" href="index.html">Cerrar sesión</a></li>
+              </ul>
+            </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+    <div class="text-center p-4">
+      <h2>Carrito de compras</h2>
     </div>
+    <h4>Articulos a comprar</h4>
+    <div class="d-flex justify-content-between col-9 mx-auto">
+      <h5>Nombre</h5>
+      <h5>Costo</h5>
+      <h5>Cantidad</h5>
+      <h5>Subtotal</h5>
+    </div>
+    <hr>
+    <div class="list-group producto-list-container">
+      <div class="cart-group-item cart-group-item-action">
+        <div class="row border border-warning overflow-hidden bg-white">
+        <div style="color:rgb(255, 255, 255); background-color:rgb(31, 31, 31);"  class="">
+          <div class="d-flex justify-content-between mx-auto">
+            <img class="img-fluid" src="${product.image}" alt="">
+            <p>${product.name}</p>
+            <p>${product.currency}${product.unitCost}</p>
+            <p>${product.count}</p>
+            <p>${product.unitCost}</p>
+          </div>
+        </div>
+        </div>
+    </div>
+    </div>
+    <div class="comentar" > 
+      <br>
+      <hr>
+      <h4>Tipo de envío</h4>
+      <br>
+      <form>
+        <fieldset class="form-group">
+          <div class="row">
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridPremium" value="option1" checked>
+                <label class="form-check-label" for="gridRadios1">
+                  Premium 2 a 5 días (15%)
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridExpress" value="option2">
+                <label class="form-check-label" for="gridRadios2">
+                  Express 5 a 6 días (7%)
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridStandard" value="option3">
+                <label class="form-check-label" for="gridRadios3">
+                  Standard 12 a 15 días (5%)
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <br>
+        <h4>Dirección de envío</h4>
+        <div class="form-row d-flex justify-content-between col-8" >
+          <div class="form-group col-md-6">
+            <label for="inputCalle">Calle</label>
+            <input type="calle" class="form-control" id="inputCalle">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="inputNumero">Número</label>
+            <input type="numero" class="form-control" id="inputNumero">
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputEsquina">Esquina</label>
+          <input type="esquina" class="form-control" id="inputEsquina">
+        </div>
+    </div>
+    <br>
+    <hr>         
+      </form>
   </main>
   <footer class="text-muted">
     <div class="container">
