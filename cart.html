@@ -46,9 +46,9 @@
   </nav>
   <main>
     <div class="text-center p-4">
-      <h2>Carrito de compras</h2>
+      <h1>Carrito de compras</h1>
     </div>
-    <h4>Articulos a comprar</h4>
+    <h3>Articulos a comprar</h3>
     <div class="d-flex justify-content-between col-10 mx-auto">
       <img class="" src="" alt="">
       <h5>Nombre</h5>
@@ -65,26 +65,26 @@
     <div class="comentar" > 
       <br>
       <hr>
-      <h4>Tipo de envío</h4>
+      <h3>Tipo de envío</h3>
       <br>
       <form>
-        <fieldset class="form-group">
+        <fieldset class="form-group" >
           <div class="row">
             <div class="col-sm-10">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="gridRadios" id="gridPremium" value="option1" checked>
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridPremium" value="option1" required>
                 <label class="form-check-label" for="gridRadios1">
                   Premium 2 a 5 días (15%)
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="gridRadios" id="gridExpress" value="option2">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridExpress" value="option2" required>
                 <label class="form-check-label" for="gridRadios2">
                   Express 5 a 6 días (7%)
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="gridRadios" id="gridStandard" value="option3">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridStandard" value="option3" required>
                 <label class="form-check-label" for="gridRadios3">
                   Standard 12 a 15 días (5%)
                 </label>
@@ -93,25 +93,120 @@
           </div>
         </fieldset>
         <br>
-        <h4>Dirección de envío</h4>
+        <h3>Dirección de envío</h3>
         <div class="form-row d-flex justify-content-between col-8" >
           <div class="form-group col-md-6">
             <label for="inputCalle">Calle</label>
-            <input type="calle" class="form-control" id="inputCalle">
+            <input type="calle" class="form-control" id="inputCalle" required>
           </div>
           <div class="form-group col-md-3">
             <label for="inputNumero">Número</label>
-            <input type="numero" class="form-control" id="inputNumero">
+            <input type="numero" class="form-control" id="inputNumero" required>
           </div>
         </div>
         <div class="form-group col-md-4">
           <label for="inputEsquina">Esquina</label>
-          <input type="esquina" class="form-control" id="inputEsquina">
+          <input type="esquina" class="form-control" id="inputEsquina" required>
         </div>
     </div>
     <br>
     <hr>         
       </form>
+      <br>
+      <h3>Costos</h3>
+      <br>
+      <div class="row border border-warning overflow-hidden bg-white mx-auto">
+        <div class="">
+          <div class="d-flex justify-content-between mx-auto">
+            <h5>Subtotal</h5>
+            <p>USD <label for="subtotal" id="subtotal"></label></p>
+          </div>
+          <p>Costo unitario del producto por cantidad</p>
+        </div>
+        </div>
+        <div class="row border border-warning overflow-hidden bg-white mx-auto">
+          <div class="">
+            <div class="d-flex justify-content-between mx-auto">
+              <h5>Costo de envío</h5>
+              <p>USD <label for="envioUSD" id="envioUSD"></label></p>
+            </div>
+            <p>Según el tipo de envío</p>
+          </div>
+          </div>
+          <div class="row border border-warning overflow-hidden bg-white mx-auto">
+            <div class="">
+              <div class="d-flex justify-content-between mx-auto">
+                <h5>Total</h5>
+                <p>USD <label for="totalUSD" id="totalUSD"></label></p>
+              </div>
+            </div>
+            </div>
+            <br>
+            <hr>
+            <br>
+      <h3>Forma de pago</h3>
+      <div class="col-sm-12">
+        <button type="button" class="btn btn-link ps-0" data-bs-toggle="modal"
+          data-bs-target="#exampleModal" id="terminos-btn">Seleccionar</button>
+          <span id="debeAceptar"></span>
+      </div>
+      <br>
+      <br>
+      <div class="d-grid gap-2 mx-auto">
+        <button class="btn btn-primary" type="button" id="finalizarCompra">Finalizar compra</button>
+      </div>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="exampleModalLabel">Forma de pago</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridExpress" value="option2" required>
+                <label class="form-check-label" for="gridRadios2">
+                  <h5>Tarjeta de crédito</h5>
+                </label>
+                <hr>
+                <div class="form-row d-flex justify-content-between col-12" >
+                  <div class="form-group col-md-7">
+                    <label for="cardNum">Numero de tarjeta</label>
+                    <input type="cardNum" class="form-control" id="cardNum">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="cardSeg">Código de seg.</label>
+                    <input type="cardSeg" class="form-control" id="cardSeg">
+                  </div>
+                </div>
+                <div class="form-group col-md-7">
+                  <label for="cardExp">Vencimiento (MM/AA)</label>
+                  <input type="cardExp" class="form-control" id="cardExp">
+                </div>
+              </div>
+              <br>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridStandard" value="option3" required>
+                <label class="form-check-label" for="gridRadios3">
+                 <h5>Transferencia bancaria</h5>
+                </label>
+                <hr>
+                <div class="form-group col-md-7">
+                  <label for="bankNum">Numero de cuenta</label>
+                  <input type="bankNum" class="form-control" id="bankNum">
+                </div>
+                <br>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -121,6 +216,11 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
         2022</p>
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade" role="alert" id="alert-danger">
+      <p>Los datos ingresados no cumplen con los requisitos solicitados</p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   </footer>
   <div id="spinner-wrapper">

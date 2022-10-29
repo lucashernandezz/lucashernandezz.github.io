@@ -51,3 +51,13 @@ function actualizarPrecio(){
   });
 }
 
+subtotal = document.getElementById("subtotal")
+subtotal.innerHTML += "$$$"
+envioUSD = document.getElementById("envioUSD")
+envioUSD.innerHTML += "$$$"
+totalUSD = document.getElementById("totalUSD")
+totalUSD.innerHTML += "$$$"
+
+function showAlertDone() {
+  document.getElementById("alert-danger").classList.add("show");
+}
