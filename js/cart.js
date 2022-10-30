@@ -2,7 +2,23 @@ let userID = 25801
 const lista = document.querySelector('.producto-list-container');
 const link = "https://japceibal.github.io/emercado-api/user_cart/" + userID + ".json";
 let listarproducto = []
-
+let botonCompra = document.getElementById("finalizarCompra")
+let radioInputs = document.getElementById("radio-inputs")
+let inputCalle = document.getElementById("inputCalle")
+let inputEsquina = document.getElementById("inputEsquina")
+let inputNumero = document.getElementById("inputNumero")
+let formaPago = document.getElementById("formaPago")
+let gridTarjeta = document.getElementById("gridTarjeta")
+let gridTransferencia = document.getElementById("gridTransferencia")
+let cardNum = document.getElementById("cardNum")
+let cardSeg = document.getElementById("cardSeg")
+let cardExp = document.getElementById("cardExp")
+let bankNum = document.getElementById("bankNum")
+let formModal = document.getElementById("form-modal")
+let seleccionarPago = document.getElementById("seleccionarPago")
+let innerForma = document.getElementById("innerForma")
+let impuestoEnvio
+let form = document.getElementById("form")
 let userMenu = document.getElementById("userMenu")
 let localuser = localStorage.getItem("usuario")
 userMenu.innerHTML += `${localuser}`
@@ -13,18 +29,50 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+
+
 document.addEventListener("DOMContentLoaded", async function() {
     
     listarproducto = await getJSONData(link);
 
+   
+    
     listarproducto.data.articles.forEach(com => {
-      lista.innerHTML += getHTMLC(com)
+     getHTMLC(com)
     });
 
+    subtotal = document.getElementById("subtotal")
+    
+    envioUSD = document.getElementById("envioUSD")
+    envioUSD.innerHTML = "$$$"
+    totalUSD = document.getElementById("totalUSD")
+    
+
+    
 });
 
+
+document.getElementById("gridPremium").addEventListener("click", () => {
+  impuestoEnvio = 0.15
+  envioUSD.innerHTML = Math.round(listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value * 0.15)
+  totalUSD.innerHTML =  (listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value) + Math.round(listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value * impuestoEnvio)
+})
+
+document.getElementById("gridExpress").addEventListener("click", () => {
+  impuestoEnvio = 0.07
+  envioUSD.innerHTML = Math.round(listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value * 0.07)
+  totalUSD.innerHTML =  (listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value) + Math.round(listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value * impuestoEnvio)
+})
+
+document.getElementById("gridStandard").addEventListener("click", () => {
+  impuestoEnvio = 0.05
+  envioUSD.innerHTML = Math.round(listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value * 0.05)
+  totalUSD.innerHTML =  (listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value) + Math.round(listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value * impuestoEnvio)
+})
+
 function getHTMLC(producto) {
-    return `
+  
+  lista.innerHTML = `
     <div class="list-group producto-list-container  ">
       <div class="cart-group-item cart-group-item-action ">
 
@@ -34,7 +82,7 @@ function getHTMLC(producto) {
             <img class="img-fluid col-1" src="${producto.image}" alt="">
             <p>${producto.name}</p>
             <p>${producto.currency}${producto.unitCost}</p>
-            <input id="cantidadCarrito" type="number" min="0" value="${producto.count}" onchange="actualizarPrecio()">
+            <input id="cantidadCarrito" type="number" min="1" value="${producto.count}" onchange="actualizarPrecio()">
             <p>${producto.currency}${producto.unitCost * producto.count}</p>
           </div>
         </div>
@@ -42,22 +90,82 @@ function getHTMLC(producto) {
     </div>
     </div>
     `;
+    subtotal.innerHTML =  (producto.unitCost * document.getElementById("cantidadCarrito").value)
+  
   };
 
 function actualizarPrecio(){
   listarproducto.data.articles[0].count = document.getElementById("cantidadCarrito").value
   listarproducto.data.articles.forEach(com => {
-    lista.innerHTML = getHTMLC(com)
+   getHTMLC(com)
+    
   });
+  subtotal.innerHTML =  (listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value)
+  envioUSD.innerHTML = Math.round(listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value * impuestoEnvio)
+  totalUSD.innerHTML =  (listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value) + Math.round(listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value * impuestoEnvio)
 }
 
-subtotal = document.getElementById("subtotal")
-subtotal.innerHTML += "$$$"
-envioUSD = document.getElementById("envioUSD")
-envioUSD.innerHTML += "$$$"
-totalUSD = document.getElementById("totalUSD")
-totalUSD.innerHTML += "$$$"
 
-function showAlertDone() {
-  document.getElementById("alert-danger").classList.add("show");
+
+function chequearInputs() {
+  if (inputCalle.value === ""){
+    inputCalle.classList.add("is-invalid")
+  }else {
+    inputCalle.classList.remove("is-invalid")
+    inputCalle.classList.add("is-valid")
+  }
+
+  if (inputEsquina.value === ""){
+    inputEsquina.classList.add("is-invalid")
+  }else {
+    inputEsquina.classList.remove("is-invalid")
+    inputEsquina.classList.add("is-valid")
+  }
+
+  if (inputNumero.value === ""){
+    inputNumero.classList.add("is-invalid")
+  }else {
+    inputNumero.classList.remove("is-invalid")
+    inputNumero.classList.add("is-valid")
+  }
 }
+
+gridTarjeta.addEventListener("click", () => {
+  bankNum.setAttribute("disabled", "")
+  bankNum.value = ""
+  
+  cardExp.removeAttribute("disabled")
+  cardNum.removeAttribute("disabled")
+  cardSeg.removeAttribute("disabled")
+  innerForma.innerHTML = "Tarjeta de crédito"
+})
+
+gridTransferencia.addEventListener("click", () => {
+  bankNum.removeAttribute("disabled")
+  cardExp.setAttribute("disabled", "")
+  cardNum.setAttribute("disabled", "")
+  cardSeg.setAttribute("disabled", "")
+  cardExp.value = ""
+  cardNum.value = ""
+  cardSeg.value = ""
+  innerForma.innerHTML = "Transferencia bancaria"
+
+})
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault()
+  console.log(formModal.checkValidity())
+  
+
+  if (!form.checkValidity()){
+    chequearInputs()
+    seleccionarPago.innerHTML = "Debe seleccionar una forma de pago y completar los datos correspondientes.";
+    seleccionarPago.style.color = 'red';
+  } 
+
+  if(form.checkValidity() && formModal.checkValidity()) {
+    chequearInputs()
+    document.getElementById("alert-success").classList.add("show");
+    seleccionarPago.innerHTML = "";
+  }
+})
