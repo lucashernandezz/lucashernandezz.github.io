@@ -17,6 +17,9 @@ let bankNum = document.getElementById("bankNum")
 let formModal = document.getElementById("form-modal")
 let seleccionarPago = document.getElementById("seleccionarPago")
 let innerForma = document.getElementById("innerForma")
+subtotal = document.getElementById("subtotal")
+envioUSD = document.getElementById("envioUSD")
+totalUSD = document.getElementById("totalUSD")
 let impuestoEnvio
 let form = document.getElementById("form")
 let userMenu = document.getElementById("userMenu")
@@ -30,24 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-
 document.addEventListener("DOMContentLoaded", async function() {
     
     listarproducto = await getJSONData(link);
-
-   
     
     listarproducto.data.articles.forEach(com => {
      getHTMLC(com)
     });
-
-    subtotal = document.getElementById("subtotal")
-    
-    envioUSD = document.getElementById("envioUSD")
-    envioUSD.innerHTML = "$$$"
-    totalUSD = document.getElementById("totalUSD")
-    
-
     
 });
 
@@ -106,7 +98,6 @@ function actualizarPrecio(){
 }
 
 
-
 function chequearInputs() {
   if (inputCalle.value === ""){
     inputCalle.classList.add("is-invalid")
@@ -153,9 +144,7 @@ gridTransferencia.addEventListener("click", () => {
 })
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault()
-  console.log(formModal.checkValidity())
-  
+  e.preventDefault()  
 
   if (!form.checkValidity()){
     chequearInputs()
