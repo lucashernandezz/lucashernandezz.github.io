@@ -29,6 +29,11 @@ let cerrarSesion = document.getElementById('cerrarSesion')
 document.addEventListener("DOMContentLoaded", function () {
     cerrarSesion.addEventListener("click", function() {
         localStorage.removeItem("usuario");
+        localStorage.removeItem("PrimerNombre");
+        localStorage.removeItem("SegundoNombre");
+        localStorage.removeItem("PrimerApellido");
+        localStorage.removeItem("SegundoApellido");
+        localStorage.removeItem("Telefono");
     });
 });
 

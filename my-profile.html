@@ -36,7 +36,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link" href="home.html">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="categories.html">Categorías</a>
@@ -44,17 +44,65 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
+          
+            <div class="dropdown">
+              <li class="nav-item" ></li>
+              <a class="btn btn-secondary dropdown-toggle" id="userMenu" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></a>
+            
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                <li><a class="dropdown-item" id="cerrarSesion" href="index.html">Cerrar sesión</a></li>
+              </ul>
+            </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+    <div class="col-10" style="margin: 0 auto ;">
+      <h1 >Perfil</h1>
+      <br>
+      <hr>
+    </div>
+    <div class="col-10" style="margin: 0 auto ;">
+      <form id="form" novalidate>
+        <div class="row">
+          <div class="col">
+            Primer nombre*
+            <input id="primerNombre" type="text" class="form-control" placeholder="">
+          </div>
+          <div class="col">
+            Segundo nombre
+            <input id="segundoNombre" type="text" class="form-control" placeholder="">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            Primer apellido*
+            <input id="primerApellido" type="text" class="form-control" placeholder="">
+          </div>
+          <div class="col">
+            Segundo apellido
+            <input id="segundoApellido" type="text" class="form-control" placeholder="">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            E-mail*
+            <input id="email" type="text" class="form-control" placeholder="">
+          </div>
+          <div class="col">
+            Teléfono de contacto*
+            <input id="telefono" type="text" class="form-control" placeholder="">
+          </div>
+        </div>
+        <br>
+        <br>
+        <hr>
+        <button type="submit" id="guardarCambios" class="btn btn-primary">Guardar cambios</button>
+      </form>
     </div>
   </main>
   <footer class="text-muted">
@@ -65,6 +113,12 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
         2022</p>
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+
+      <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">
+        <p>¡Tus datos han sido modificados!</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
     </div>
   </footer>
   <script src="js/bootstrap.bundle.min.js"></script>

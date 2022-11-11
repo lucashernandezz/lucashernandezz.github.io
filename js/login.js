@@ -19,5 +19,10 @@ function showAlertError() {
 document.addEventListener("DOMContentLoaded", function () {
     boton.addEventListener("click", function() {
         localStorage.setItem("usuario", email.value);
+        localStorage.removeItem("PrimerNombre");
+        localStorage.removeItem("SegundoNombre");
+        localStorage.removeItem("PrimerApellido");
+        localStorage.removeItem("SegundoApellido");
+        localStorage.removeItem("Telefono");
     });
 });
