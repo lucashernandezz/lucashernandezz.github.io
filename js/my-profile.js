@@ -78,7 +78,6 @@ function chequearInputs() {
   
     if(form.checkValidity()) {
       chequearInputs()
-      document.getElementById("alert-success").classList.add("show");
       localStorage.setItem("usuario", email.value)
       localStorage.setItem("PrimerNombre", primerNombre.value)
       localStorage.setItem("SegundoNombre", segundoNombre.value)
