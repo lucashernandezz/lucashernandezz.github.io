@@ -1,7 +1,7 @@
-let userMenu = document.getElementById("userMenu")
-let localuser = localStorage.getItem("usuario")
+let userMenu = document.getElementById("userMenu");
+let localuser = localStorage.getItem("usuario");
 userMenu.innerHTML += `${localuser}`
-let cerrarSesion = document.getElementById('cerrarSesion')
+let cerrarSesion = document.getElementById('cerrarSesion');
 document.addEventListener("DOMContentLoaded", function () {
     cerrarSesion.addEventListener("click", function() {
         localStorage.removeItem("usuario");
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-let products =  localStorage.getItem('ProductID')
+let products =  localStorage.getItem('ProductID');
 const linkProduct = "https://japceibal.github.io/emercado-api/products/" + products + ".json";
 const linkcomentarios = "https://japceibal.github.io/emercado-api/products_comments/" + products + ".json";
 
@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     });
 });
 
+   //La funcion se encarga de imprimir la cantidad de estrellas en base al valor que tome
 function estrellitas(num) {
   let starAgregar = ""
   const starCompleta = `<span class="fa fa-star checked"></span>`;
@@ -48,6 +49,7 @@ function estrellitas(num) {
   return starAgregar
 };
 
+   //Imprime los productos
 function getHTMLP(producto) {
     return `
          <br>
@@ -65,6 +67,7 @@ function getHTMLP(producto) {
     `;
 };
 
+   //Imprime los comentarios
 function getHTMLC(product) {
   return `
   <div class="row border border-warning overflow-hidden mb-3 bg-white">
@@ -86,6 +89,7 @@ ${product.score}
   `;
 };
 
+   //Imprime los productos relacionados
 function getHTMLrel(rel) {
   return `
        <br>
@@ -100,7 +104,8 @@ function getHTMLrel(rel) {
   `;
 };
 
+   //Toma el id del producto relacionado para dirigirnos a la pagina de dicho producto
 function setRelID(id) {
   localStorage.setItem("ProductID", id);
   window.location = "product-info.html"
-}
+};

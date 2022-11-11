@@ -66,14 +66,14 @@ function chequearInputs() {
         telefono.classList.remove("is-invalid")
         telefono.classList.add("is-valid")
       }
-  }
+  };
 
+    //Al hacer click en el boton revisa la validez del form 
   form.addEventListener("submit", (e) => {
     e.preventDefault()  
   
     if (!form.checkValidity()) {
-      chequearInputs()
-      
+      chequearInputs()  
     } 
   
     if(form.checkValidity()) {
@@ -86,4 +86,4 @@ function chequearInputs() {
       localStorage.setItem("SegundoApellido", segundoApellido.value)
       localStorage.setItem("Telefono", telefono.value)
     }
-  })
+  });

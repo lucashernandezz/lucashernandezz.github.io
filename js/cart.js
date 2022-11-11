@@ -2,28 +2,28 @@ let userID = 25801
 const lista = document.querySelector('.producto-list-container');
 const link = "https://japceibal.github.io/emercado-api/user_cart/" + userID + ".json";
 let listarproducto = []
-let botonCompra = document.getElementById("finalizarCompra")
-let radioInputs = document.getElementById("radio-inputs")
-let inputCalle = document.getElementById("inputCalle")
-let inputEsquina = document.getElementById("inputEsquina")
-let inputNumero = document.getElementById("inputNumero")
-let formaPago = document.getElementById("formaPago")
-let gridTarjeta = document.getElementById("gridTarjeta")
-let gridTransferencia = document.getElementById("gridTransferencia")
-let cardNum = document.getElementById("cardNum")
-let cardSeg = document.getElementById("cardSeg")
-let cardExp = document.getElementById("cardExp")
-let bankNum = document.getElementById("bankNum")
-let formModal = document.getElementById("form-modal")
-let seleccionarPago = document.getElementById("seleccionarPago")
-let innerForma = document.getElementById("innerForma")
-subtotal = document.getElementById("subtotal")
-envioUSD = document.getElementById("envioUSD")
-totalUSD = document.getElementById("totalUSD")
+let botonCompra = document.getElementById("finalizarCompra");
+let radioInputs = document.getElementById("radio-inputs");
+let inputCalle = document.getElementById("inputCalle");
+let inputEsquina = document.getElementById("inputEsquina");
+let inputNumero = document.getElementById("inputNumero");
+let formaPago = document.getElementById("formaPago");
+let gridTarjeta = document.getElementById("gridTarjeta");
+let gridTransferencia = document.getElementById("gridTransferencia");
+let cardNum = document.getElementById("cardNum");
+let cardSeg = document.getElementById("cardSeg");
+let cardExp = document.getElementById("cardExp");
+let bankNum = document.getElementById("bankNum");
+let formModal = document.getElementById("form-modal");
+let seleccionarPago = document.getElementById("seleccionarPago");
+let innerForma = document.getElementById("innerForma");
+subtotal = document.getElementById("subtotal");
+envioUSD = document.getElementById("envioUSD");
+totalUSD = document.getElementById("totalUSD");
 let impuestoEnvio
-let form = document.getElementById("form")
-let userMenu = document.getElementById("userMenu")
-let localuser = localStorage.getItem("usuario")
+let form = document.getElementById("form");
+let userMenu = document.getElementById("userMenu");
+let localuser = localStorage.getItem("usuario");
 userMenu.innerHTML += `${localuser}`
 let cerrarSesion = document.getElementById('cerrarSesion')
 document.addEventListener("DOMContentLoaded", function () {
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     
 });
 
-
+   //Actualiza segun la seleccion de envio
 document.getElementById("gridPremium").addEventListener("click", () => {
   impuestoEnvio = 0.15
   envioUSD.innerHTML = Math.round(listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value * 0.15)
@@ -67,6 +67,7 @@ document.getElementById("gridStandard").addEventListener("click", () => {
   totalUSD.innerHTML =  (listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value) + Math.round(listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value * impuestoEnvio)
 })
 
+   //Imprime los productos
 function getHTMLC(producto) {
   
   lista.innerHTML = `
@@ -91,6 +92,7 @@ function getHTMLC(producto) {
   
   };
 
+
 function actualizarPrecio(){
   listarproducto.data.articles[0].count = document.getElementById("cantidadCarrito").value
   listarproducto.data.articles.forEach(com => {
@@ -100,7 +102,7 @@ function actualizarPrecio(){
   subtotal.innerHTML =  (listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value)
   envioUSD.innerHTML = Math.round(listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value * impuestoEnvio)
   totalUSD.innerHTML =  (listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value) + Math.round(listarproducto.data.articles[0].unitCost * document.getElementById("cantidadCarrito").value * impuestoEnvio)
-}
+};
 
 
 function chequearInputs() {
@@ -124,8 +126,9 @@ function chequearInputs() {
     inputNumero.classList.remove("is-invalid")
     inputNumero.classList.add("is-valid")
   }
-}
+};
 
+   //Desactiva la otra forma de pago
 gridTarjeta.addEventListener("click", () => {
   bankNum.setAttribute("disabled", "")
   bankNum.value = ""
@@ -136,6 +139,7 @@ gridTarjeta.addEventListener("click", () => {
   innerForma.innerHTML = "Tarjeta de crédito"
 })
 
+   //Desactiva la otra forma de pago
 gridTransferencia.addEventListener("click", () => {
   bankNum.removeAttribute("disabled")
   cardExp.setAttribute("disabled", "")
@@ -146,8 +150,9 @@ gridTransferencia.addEventListener("click", () => {
   cardSeg.value = ""
   innerForma.innerHTML = "Transferencia bancaria"
 
-})
+});
 
+  //Al hacer click en el boton revisa la validez del form 
 form.addEventListener("submit", (e) => {
   e.preventDefault()  
 
@@ -162,4 +167,4 @@ form.addEventListener("submit", (e) => {
     document.getElementById("alert-success").classList.add("show");
     seleccionarPago.innerHTML = "";
   }
-})
+});
